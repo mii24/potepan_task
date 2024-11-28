@@ -1,0 +1,3251 @@
+@charset "UTF-8";
+
+body {
+  color: #333;
+  font-family: "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+body, div, p, ul, ol, li, dl, dt, dd, table, th, td, img, figure, h1, h2, h3, h4, h5, h6, form, select {
+  margin: 0;
+  padding: 0;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+ol, ul {
+  box-sizing: border-box;
+}
+
+li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+  unicode-bidi: isolate;
+}
+
+/*疑似要素*/
+*, *::before, *::after {
+  word-break: break-all;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+/** -----------------------------------
+    ヘッダー
+-------------------------------------**/
+/* Header */
+.Header {
+  width: 100%;
+  background-color: #fff;
+  /*グリッドコンテナ*/
+  display: grid;
+  height: 70px;
+  width: 100%;
+}
+
+@media screen and (max-width: 1080px) {
+  .Header {
+      background-color: #fff;
+      z-index: 10;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .Header {
+      padding-top: 15px;
+      padding-bottom: 15px;
+  }
+}
+
+/* Header--common */
+.Header--common {
+  box-shadow: 0px 15px 20px 0px rgba(0, 0, 0, 0.05);
+}
+
+@media screen and (max-width: 1080px) {
+  .Header--common {
+    /*画面縮小時、ヘッダーを固定*/
+      position: fixed !important;
+  }
+}
+
+/* HeaderContainer */
+.HeaderContainer {
+  /*要素を横並び*/
+  display: flex;
+  /*アイテムを両端揃えで均等に配置する*/
+  justify-content: space-between;
+  margin: 0 36px 0 36px;
+  max-width: 100%;
+  /*現在の位置を基準に相対的な位置を決める*/
+  position: relative;
+}
+
+@media screen and (max-width: 767px) {
+  .HeaderContainer {
+      max-width: 100%;
+      margin: 0 16px;
+  }
+}
+
+.HeaderContainer>*:last-child {
+  display: inline-flex;
+}
+
+/* HeaderLogo */
+.HeaderLogo {
+  /*中心に配置  ※align:center;は親要素の対して中央*/
+  align-self: center;
+}
+
+
+.HeaderLogo__image--pc {
+  /*ブロック要素にする*/
+  display: block;
+  height: 20px;
+  width: auto;
+}
+@media screen and (max-width: 767px) {
+  .HeaderLogo__image--pc {
+      display: none !important;
+  }
+}
+
+.HeaderLogo__image--sp {
+  display: none;
+  height: 16px;
+  width: auto;
+}
+@media screen and (max-width: 767px) {
+  .HeaderLogo__image--sp {
+      display: block !important;
+  }
+}
+
+/* HeaderNavHamburger */
+.HeaderNavHamburger {
+  display: none;
+}
+
+@media screen and (max-width: 1080px) {
+  .HeaderNavHamburger {
+      cursor: pointer;
+      display: block;
+      position: relative;
+      width: 24px;
+      height: 17px;
+      margin: auto;
+      /* 指定した値が大きいほど上に表示される */
+      z-index: 100;
+  }
+}
+@media screen and (max-width: 414px) {
+  .HeaderNavHamburger {
+      height: 12px;
+      width: 18px;
+  }
+}
+
+/* HeaderNavHamburger__line */
+@media screen and (max-width: 1080px) {
+  .HeaderNavHamburger__line:first-child {
+      top: 0;
+  }
+}
+@media screen and (max-width: 1080px) {
+  .HeaderNavHamburger__line {
+      position: absolute;
+      top: 50%;
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: #A2A2A4;
+      transform: translate(0, -50%);
+      /* 角を丸くする */
+      border-radius: 10px;
+      /* 0.2秒かけて変化、opacity:透明度 */
+      transition: top 0.2s, transform 0.2s, opacity 0.3s;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .HeaderNavHamburger__line:last-child {
+      top: 100%;
+  }
+}
+
+/*
+@media screen and (max-width: 1080px) {
+    .is-active .HeaderNavHamburger__line:first-child {
+        top: 50%;
+        上側を傾ける
+        transform: translate(0, -50%) rotate(45deg);
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width: 1080px) {
+  .is-active .HeaderNavHamburger__line {
+      will-change: top;
+      transform: translate(20px, -50%);
+      opacity: 0;
+  }
+}
+
+*/
+
+/* HeaderNavList */
+.HeaderNavList {
+  align-items: center;
+  /* inline要素にして横並びにする */
+  display: flex;
+  /*アイテムを両端揃えで均等に配置する*/
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 1080px) {
+  .HeaderNavList {
+    /*overflow-y:はみ出た要素の上下の表示方法を指定するプロパティ、scroll:要素に収まらない場合、縦方向にスクロールして表示*/
+      overflow-y: scroll;
+      position: fixed;
+      top: 60px;
+      left: 100%;
+      width: 100%;
+      display: block;
+      padding-top: 20px;
+      padding-bottom: 75px;
+      transition: transform 0.5s;
+      z-index: 99;
+      background-color: rgba(0, 0, 0, 0.8);
+      height: 100%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .HeaderNavList {
+      top: 70px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .HeaderNavList {
+      top: 48px;
+  }
+}
+
+ /* HeaderNavListItem */
+.HeaderNavListItem {
+  margin-right: 45px;
+}
+
+@media screen and (max-width: 1080px) {
+  .HeaderNavListItem {
+      margin-right: 0;
+  }
+}
+
+.HeaderNavListItem:last-of-type {
+  margin-right: 0;
+}
+
+@media screen and (max-width: 1080px) {
+  .HeaderNavListItem:last-of-type {
+      margin-top: 20px;
+  }
+}
+
+
+/* HeaderNavListItem__link */
+.HeaderNavListItem__link {
+  display: block;
+}
+  
+@media screen and (max-width: 1080px) {
+  .HeaderNavListItem__link {
+    padding: 20px 0;
+  }
+}
+
+/* span */
+.HeaderNavListItem__link>span {
+  display: block;
+  font-weight: 700;
+  text-align: center;
+}
+
+.HeaderNavListItem__link>span:first-child {
+  font-family: "Lato", sans-serif;
+  font-size: 12px;
+  line-height: 14.4px;
+}
+
+@media screen and (max-width: 1080px) {
+  .HeaderNavListItem__link>span:first-child {
+      font-size: 16px;
+      letter-spacing: 5px;
+      color: #fff;
+  }
+}
+
+.HeaderNavListItem__link>span:last-child {
+  font-size: 10px;
+}
+
+@media screen and (max-width: 1080px) {
+  .HeaderNavListItem__link>span:last-child {
+      font-size: 12px;
+      margin-top: 10px;
+      color: #F79214;
+      letter-spacing: 2px;
+  }
+}
+
+
+
+
+.HeaderNavListItem__button {
+  align-items: center;
+  background-color: #F79214;
+  border: none;
+  /* ボックスの角を丸くする */
+  border-radius: 38px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  font-size: 16px;
+  font-weight: 700;
+  height: 64px;
+  justify-content: center;
+  text-decoration: none;
+  text-align: center;
+  width: 100%;
+  font-size: 12px;
+  height: 40px;
+  padding: 0 20px;
+}
+
+@media screen and (max-width: 1080px) {
+  .HeaderNavListItem__button {
+      font-size: 16px;
+      margin: 0 auto;
+      height: 60px;
+      width: 250px;
+  }
+}
+
+
+/** -----------------------------------
+    メイン
+-------------------------------------**/
+main {
+  display: block;
+}
+
+/** -----------------------------------
+    ファーストビュー
+-------------------------------------**/
+/* 半角スペースを空けてclass名を複数記述可能 */
+.FirstView {
+  position: relative;
+  height: 739px;
+}
+
+@media screen and (max-width: 767px) {
+  .FirstView {
+      height: fit-content;
+  }
+}
+
+.FirstView__bg-image {
+  position: absolute;
+  /* 要素の重なりの順番 */
+  z-index: -1;
+}
+
+@media screen and (max-width: 767px) {
+  .FirstView__bg-image {
+      display: none;
+  }
+}
+
+img.lazy {
+  /* 高さの最小値  */
+  min-height: 1px;
+}
+
+.FirstView__bg-image1 {
+  top: -70px;
+  left: 0;
+}
+
+.FirstView__bg-image2 {
+  right: 0;
+  bottom: 70px;
+}
+
+.FirstView__bg-image3 {
+  top: 84px;
+  left: -70px;
+}
+
+.FirstView__bg-image--main-visual {
+  top: -70px;
+  right: 0;
+  width: 775px;
+}
+
+.FirstView__bg-image5 {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .FirstView__bg-image5 {
+      display: block;
+      margin-bottom: 7px;
+      width: 100%;
+  }
+}
+
+img {
+  border: 0;
+  /* middle：選択した要素の中心を親要素の縦の位置の中心に合わせる */
+  vertical-align: middle;
+}
+
+/* FirstView__container */
+.FirstView__container {
+  max-width: 1040px;
+/* margin-right: autoと一緒に用いて要素を中央に配置 */
+  margin-left: auto;
+  margin-right: auto;
+/* relativeを指定すると要素の現在位置を基準にした相対位置に要素を配置できる */
+  position: relative;
+  padding-top: 219px;
+}
+
+@media screen and (max-width: 1080px) {
+  .FirstView__container {
+      max-width: none;
+      padding-left: 36px;
+      padding-right: 36px;
+  }
+}
+
+.FirstViewContent {
+  position: relative;
+  width: fit-content;
+}
+
+.FirstViewContent__badge-image {
+  position: absolute;
+  top: -105px;
+  right: -150px;
+}
+
+.FirstViewContent__title {
+  color: #333;
+  font-family: "Lato", sans-serif;
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 63px;
+  margin-bottom: 16px;
+}
+
+.FirstViewContent__button{
+  align-items: center;
+    background-color: #F79214;
+    border: none;
+    border-radius: 38px;
+    color: #fff;
+/*  カーソルを指差しの手に */
+    cursor: pointer;
+    display: flex;
+/*  column：上寄せ、上から順に要素を配置する（縦並び） */
+    flex-direction: column;
+    font-size: 16px;
+    font-weight: 700;
+    height: 64px;
+    justify-content: center;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.FirstViewContent__caption {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+
+/** -----------------------------------
+    02.POTEPAN CAMPとは
+-------------------------------------**/
+/* AboutWrapper */
+.AboutWrapper {
+  padding: 60px 0;
+  padding: 0 0 60px;
+}
+
+@media screen and (max-width: 767px) {
+  .AboutWrapper {
+      padding: 40px 0;
+  }
+}
+
+
+/* AboutSection */
+.AboutSection {
+  max-width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+@media screen and (max-width: 1080px) {
+  .AboutSection {
+      max-width: none;
+      padding-left: 36px;
+      padding-right: 36px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .AboutSection {
+      max-width: none;
+      padding-left: 16px;
+      padding-right: 16px;
+  }
+}
+
+/* About__title */
+.About__title {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 60px;
+  width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  .About__title {
+      margin-bottom: 40px;
+  }
+}
+
+/* h2 */
+.About__title h2 {
+  font-family: "Lato", sans-serif;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 54px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+  .About__title h2 {
+      font-size: 25px;
+      line-height: 36px;
+      text-align: center;
+      /* テキストを改行しない */
+      word-break: keep-all;
+  }
+}
+
+/* br */
+.About__title br {
+  display: none;
+}
+@media screen and (max-width: 767px) {
+  .AboutSection__title br {
+      display: block !important;
+  }
+}
+
+/* after */
+.About__title::after {
+  border-bottom: 6px solid #F79214;
+  /* テキストもいれれる */
+  content: "";
+  display: block;
+  margin-top: 10px;
+  width: 50px;
+}
+
+
+/* AboutPointContainer */
+.AboutPointContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+@media screen and (max-width: 767px) {
+  .AboutPointContainer {
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+  }
+}
+
+/* AboutPoint */
+.AboutPoint {
+  align-items: center;
+  background-color: #F4F5F7;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 40px 0;
+  width: 33.333%;
+}
+
+@media screen and (max-width: 767px) {
+  .AboutPoint {
+      padding: 46px 0;
+      max-width: 350px;
+      width: 100%;
+  }
+}
+
+/* AboutPoint__image */
+.AboutPoint__image {
+  border-radius: 50%;
+  width: 200px;
+  max-width: 200px;
+}
+
+@media screen and (max-width: 1080px) {
+  .AboutPoint__image {
+      width: 75%;
+  }
+}
+
+img {
+  border: 0;
+  vertical-align: middle;
+}
+img.lazy {
+  min-height: 1px;
+}
+/* AboutPoint__text */
+.AboutPoint__text {
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 32px;
+  text-align: center;
+}
+@media screen and (max-width: 1080px) {
+  .AboutPoint__text {
+      font-size: 18px;
+      line-height: 26px;
+  }
+}
+
+/** -----------------------------------
+    03.学習システム
+-------------------------------------**/
+/* LearningSystemWrapper */
+.LearningSystemWrapper {
+  padding: 60px 0;
+  background-color: #fff;
+  margin-bottom: 60px;
+}
+@media screen and (max-width: 767px) {
+  .LearningSystemWrapper {
+      margin-bottom: 0;
+  }
+}
+@media screen and (max-width: 767px) {
+  .LearningSystemWrapper {
+      padding: 40px 0;
+  }
+}
+
+/* LearningSystem */
+.LearningSystem {
+  max-width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+@media screen and (max-width: 1080px) {
+  .LearningSystem {
+      max-width: none;
+      padding-left: 36px;
+      padding-right: 36px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .LearningSystem {
+      max-width: 414px;
+      width: 100%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .LearningSystem {
+      max-width: none;
+      padding-left: 16px;
+      padding-right: 16px;
+  }
+}
+
+
+/* LearningSystem__title */
+.LearningSystem__title {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 60px;
+  width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  .LearningSystem__title {
+      margin-bottom: 40px;
+  }
+}
+/* h2 */
+.LearningSystem__title h2 {
+  font-family: "Lato", sans-serif;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 54px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+  .LearningSystem__title h2 {
+      font-size: 25px;
+      line-height: 36px;
+      text-align: center;
+      word-break: keep-all;
+  }
+}
+/* br */
+.LearningSystem__title br {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .LearningSystem__title br {
+      display: block !important;
+  }
+}
+/* after */
+.LearningSystem__title::after {
+  border-bottom: 6px solid #F79214;
+  content: "";
+  display: block;
+  margin-top: 10px;
+  width: 50px;
+}
+
+/* LearningSystemDetail */
+.LearningSystemDetail {
+  /* フレックスコンテナ内の始端に配置 */
+  align-items: flex-start;
+  display: flex;
+  gap: 20px;
+}
+
+@media screen and (max-width: 767px) {
+  .LearningSystemDetail {
+    /* プロパティをリセットし、親からの継承された場合は継承値、それ以外は初期値を設定 */
+      display: unset;
+  }
+}
+
+/* LearningSystemDetail__image-wrapper */
+.LearningSystemDetail__image-wrapper {
+  position: relative;
+  width: 50%;
+}
+
+/* earningSystemDetail__bg-image */
+.LearningSystemDetail__bg-image {
+  width: 95%;
+  /* 起点からどれだけ離れているかを指定できるよう */
+  position: absolute;
+  top: -35px;
+  left: -10px;
+  z-index: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .LearningSystemDetail__bg-image {
+      display: none;
+  }
+}
+
+/* LearningSystemDetail__image */
+.LearningSystemDetail__image {
+   /* 透明 */
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  width: 100%;
+  position: absolute;
+  top: -15px;
+}
+
+@media screen and (max-width: 767px) {
+  .LearningSystemDetail__image {
+      display: none;
+  }
+}
+
+/* LearningSystemDetail__image--active */
+.LearningSystemDetail__image--active {
+  opacity: 1;
+}
+
+/* LearningSystemDetailList */
+.LearningSystemDetailList {
+  /* 親要素全体に広げる */
+  flex: 1;
+}
+
+/* LearningSystemDetailListItem */
+.LearningSystemDetailListItem {
+  border-radius: 10px;
+  color: #A2A2A4;
+  cursor: pointer;
+  margin-bottom: 10px;
+  padding: 20px;
+}
+@media screen and (max-width: 767px) {
+  .LearningSystemDetailListItem {
+      background-color: #F4F5F7;
+      margin-bottom: 10px;
+      /* クリック、ホバーなどを無効にする */
+      pointer-events: none;
+  }
+}
+
+.LearningSystemDetailListItem:last-of-type {
+  margin-bottom: 0;
+}
+
+/* .LearningSystemDetailListItem--active */
+.LearningSystemDetailListItem--active {
+  background-color: #F4F5F7;
+}
+
+.LearningSystemDetailListItem--active .LearningSystemDetailListItem__title, .LearningSystemDetailListItem--active .LearningSystemDetailListItem__description {
+  color: #333;
+}
+
+/* .LearningSystemDetailListItem__title */
+.LearningSystemDetailListItem__title {
+  color: #A2A2A4;
+  font-family: "Lato", sans-serif;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 32px;
+  margin-bottom: 8px;
+}
+
+@media screen and (max-width: 767px) {
+  .LearningSystemDetailListItem__title {
+      color: #333;
+      font-size: 18px;
+      line-height: 26px;
+      text-align: center;
+  }
+}
+/* .LearningSystemDetailListItem__image */
+.LearningSystemDetailListItem__image {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .LearningSystemDetailListItem__image {
+      display: block;
+      margin-bottom: 8px;
+      width: 100%;
+  }
+}
+/* .LearningSystemDetailListItem__description */
+.LearningSystemDetailListItem__description {
+  color: #A2A2A4;
+  font-size: 14px;
+  /* .文字につく行の高さを指定する */
+  line-height: 21px;
+}
+
+@media screen and (max-width: 767px) {
+  .LearningSystemDetailListItem__description {
+      color: #333;
+      line-height: 18px;
+  }
+}
+
+
+/** -----------------------------------
+    04.提携企業
+-------------------------------------**/
+/* FvPartnerCorporationWrapper */
+.FvPartnerCorporationWrapper {
+  padding: 60px 0;
+  background-color: #fff;
+}
+
+@media screen and (max-width: 767px) {
+  .FvPartnerCorporationWrapper {
+      padding: 40px 0;
+  }
+}
+
+/* FvPartnerCorporation */
+.FvPartnerCorporation {
+  max-width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+@media screen and (max-width: 1080px) {
+  .FvPartnerCorporation {
+      max-width: none;
+      padding-left: 36px;
+      padding-right: 36px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .FvPartnerCorporation {
+      max-width: 414px;
+      width: 100%;
+  }
+}
+
+/* FvPartnerCorporation__title */
+.FvPartnerCorporation__title {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 60px;
+  width: 100%;
+}
+@media screen and (max-width: 767px) {
+  .FvPartnerCorporation__title {
+      margin-bottom: 40px;
+  }
+}
+
+/* h2 */
+.FvPartnerCorporation__title h2 {
+  font-family: "Lato", sans-serif;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 54px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+  .FvPartnerCorporation__title h2 {
+      font-size: 25px;
+      line-height: 36px;
+      text-align: center;
+      word-break: keep-all;
+  }
+}
+
+/* br */
+.FvPartnerCorporation__title br {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .FvPartnerCorporation__title br {
+      display: block !important;
+  }
+}
+
+/* after */
+.FvPartnerCorporation__title::after {
+  border-bottom: 6px solid #F79214;
+  content: "";
+  display: block;
+  margin-top: 10px;
+  width: 50px;
+}
+
+/* FvPartnerCorporation__description */
+.FvPartnerCorporation__description {
+  font-size: 16px;
+  line-height: 26px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* FvPartnerCorporationDetail */
+.FvPartnerCorporationDetail {
+  border-radius: 10px;
+  box-shadow: 0px 15px 20px 0px rgba(0, 0, 0, 0.05);
+  display: flex;
+  margin-bottom: 40px;
+}
+
+@media screen and (max-width: 767px) {
+  .FvPartnerCorporationDetail {
+      flex-direction: column;
+  }
+}
+
+/* FvPartnerCorporationList */
+.FvPartnerCorporationList {
+  border-right: 1px solid #e0e0e0;
+  display: flex;
+  flex: 1;
+  /* フレックスアイテムを複数行に分割 */
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* 行間・列間のアキを設定 */
+  gap: 34px;
+  padding: 54px 60px;
+}
+
+@media screen and (max-width: 767px) {
+  .FvPartnerCorporationList {
+      border-right: none;
+      border-bottom: 1px solid #e0e0e0;
+      gap: 23px;
+      padding: 20px;
+  }
+}
+
+/* FvPartnerCorporationList__item */
+.FvPartnerCorporationList__item {
+  /* グリッドレイアウト（升目） */
+  display: grid;
+  place-content: center;
+  /* 3列分から間の余白を引く */
+  width: calc((100% / 3) - 34px);
+}
+
+@media screen and (max-width: 767px) {
+  .FvPartnerCorporationList__item {
+      width: calc((100% / 2) - 23px);
+  }
+}
+
+.sm-hidden {
+  display: block;
+}
+
+@media screen and (max-width: 767px) {
+  .sm-hidden {
+      display: none !important;
+  }
+}
+/* img */
+.FvPartnerCorporationList__item>img {
+  width: 100%;
+}
+
+/* FvPartnerCorporationMerit */
+.FvPartnerCorporationMerit {
+  padding: 24px 40px 40px;
+  width: 242px;
+}
+
+@media screen and (max-width: 767px) {
+  .FvPartnerCorporationMerit {
+      margin: auto;
+      padding: 16px;
+      width: fit-content;
+  }
+}
+
+/* FvPartnerCorporationMerit__title */
+.FvPartnerCorporationMerit__title {
+  font-size: 18px;
+  line-height: 26px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+  .FvPartnerCorporationMerit__title {
+      margin-bottom: 16px;
+  }
+}
+
+/* FvPartnerCorporationMeritList */
+.FvPartnerCorporationMeritList {
+  text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+  .FvPartnerCorporationMeritList {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 32px 16px;
+  }
+}
+
+/* FvPartnerCorporationMeritListItem */
+.FvPartnerCorporationMeritListItem {
+  margin-bottom: 32px;
+}
+
+@media screen and (max-width: 767px) {
+  .FvPartnerCorporationMeritListItem {
+      margin-bottom: 0;
+      width: calc(50% - 16px);
+  }
+}
+
+/* FvPartnerCorporationMeritListItem__number */
+.FvPartnerCorporationMeritListItem__number {
+  background-color: #DCDCDC;
+  border-radius: 50%;
+  /* 中身の幅に合わせた大きさになる */
+  display: inline-block;
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 27px;
+  margin-bottom: 8px;
+  height: 27px;
+  width: 27px;
+  text-align: center;
+}
+
+/* FvPartnerCorporationMeritListItem__text */
+.FvPartnerCorporationMeritListItem__text {
+  font-size: 14px;
+  line-height: 18px;
+}
+
+/* FvPartnerCorporationReviews */
+.FvPartnerCorporationReviews {
+  display: flex;
+  gap: 24px;
+}
+
+@media screen and (max-width: 767px) {
+  .FvPartnerCorporationReviews {
+      flex-direction: column;
+  }
+}
+
+/* FvPartnerCorporationReview */
+.FvPartnerCorporationReview {
+  align-items: center;
+  background-color: #F4F5F7;
+  border-radius: 10px;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  padding: 24px;
+  width: 50%;
+}
+
+@media screen and (max-width: 767px) {
+  .FvPartnerCorporationReview {
+    /* 下から上 */
+      flex-direction: column-reverse;
+      gap: 0;
+      text-align: center;
+      width: 100%;
+  }
+}
+
+/* FvPartnerCorporationReviewImage */
+.FvPartnerCorporationReviewImage {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 160px;
+}
+
+@media screen and (max-width: 767px) {
+  .FvPartnerCorporationReviewImage {
+      width: 100%;
+  }
+}
+
+/* FvPartnerCorporationReviewImage>img */
+.FvPartnerCorporationReviewImage>img {
+  height: 100px;
+  width: 100px;
+}
+
+/* FvPartnerCorporationReviewImage>span */
+.FvPartnerCorporationReviewImage>span {
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+}
+
+/* FvPartnerCorporationReviewComment__description */
+.FvPartnerCorporationReviewComment__description {
+  font-size: 12px;
+  line-height: 16px;
+  text-align: left;
+}
+
+.FvPartnerCorporationReviewComment__description--pc {
+  display: block;
+}
+
+@media screen and (max-width: 767px) {
+  .FvPartnerCorporationReviewComment__description--pc {
+      display: none !important;
+  }
+}
+
+.FvPartnerCorporationReviewComment__description--sp {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .FvPartnerCorporationReviewComment__description--sp {
+      display: block !important;
+  }
+}
+/* FvPartnerCorporationReviewComment */
+.FvPartnerCorporationReviewComment {
+  flex: 1;
+}
+
+/* FvPartnerCorporationReviewComment */
+.FvPartnerCorporationReviewComment__tag {
+  border-radius: 10px;
+  color: #fff;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  margin-bottom: 10px;
+  padding: 2px 8px;
+  width: fit-content;
+}
+
+.FvPartnerCorporationReviewComment__tag--graduate {
+  background-color: #F79214;
+}
+
+.FvPartnerCorporationReviewComment__tag--corporation {
+  background-color: #000;
+}
+
+/* FvPartnerCorporationReviewComment__title */
+.FvPartnerCorporationReviewComment__title {
+  font-size: 18px;
+  line-height: 26px;
+  margin-bottom: 8px;
+}
+
+/* br */
+.FvPartnerCorporationReviewComment__title>br {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .FvPartnerCorporationReviewComment__title>br {
+      display: block !important;
+  }
+}
+/* FvPartnerCorporationReview */
+.FvPartnerCorporationReview {
+  align-items: center;
+  background-color: #F4F5F7;
+  border-radius: 10px;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  padding: 24px;
+  width: 50%;
+}
+
+@media screen and (max-width: 767px) {
+  .FvPartnerCorporationReview {
+      flex-direction: column-reverse;
+      gap: 0;
+      text-align: center;
+      width: 100%;
+  }
+}
+
+
+
+
+/** -----------------------------------
+    05.学習/転職サポート
+-------------------------------------**/
+  /* SupportWrapper */
+.SupportWrapper {
+  padding: 60px 0;
+  background-color: #fff;
+}
+
+@media screen and (max-width: 767px) {
+  .SupportWrapper {
+      padding: 40px 0;
+  }
+}
+
+  /* Support */
+.Support {
+  max-width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+@media screen and (max-width: 1080px) {
+  .Support {
+      max-width: none;
+      padding-left: 36px;
+      padding-right: 36px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .Support {
+      max-width: none;
+      padding-left: 16px;
+      padding-right: 16px;
+  }
+}
+
+
+/* Support_title */
+  .Support_title {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 60px;
+    width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  .Support_title {
+      margin-bottom: 40px;
+  }
+}
+
+  /* h2 */
+  .Support_title h2 {
+    font-family: "Lato", sans-serif;
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 54px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+  .Support_title h2 {
+      font-size: 25px;
+      line-height: 36px;
+      text-align: center;
+      word-break: keep-all;
+  }
+}
+  /* br */
+.Support_title br {
+  display: none;
+}
+@media screen and (max-width: 767px) {
+  .Support_title br {
+      display: block !important;
+  }
+}
+  /* after */
+.Support_title::after {
+  border-bottom: 6px solid #F79214;
+  content: "";
+  display: block;
+  margin-top: 10px;
+  width: 50px;
+}
+
+  /* SupportList */
+.SupportList {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+@media screen and (max-width: 767px) {
+  .SupportList {
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0 auto 40px;
+      max-width: 414px;
+      width: 100%;
+  }
+}
+  /* SupportListItem */
+.SupportListItem {
+  border-radius: 16px;
+  box-shadow: 0px 15px 20px 0px rgba(0, 0, 0, 0.05);
+}
+  /* SupportListItem__header */
+.SupportListItem__header {
+  background-color: #333;
+  border-radius: 16px 16px 0 0;
+  color: #fff;
+  display: block;
+  font-size: 21px;
+  font-weight: 700;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+}
+
+  /* SupportListItem__image */
+.SupportListItem__image {
+  width: 100%;
+}
+ /* SupportPointWrapper */
+.SupportPointWrapper {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 20px;
+}
+@media screen and (max-width: 1080px) {
+  .SupportPointWrapper {
+      padding: 10px;
+  }
+}
+
+ /* SupportPointList */
+.SupportPointList {
+  flex: 1;
+  padding-left: 16px;
+}
+
+ /* SupportPointList__item */
+.SupportPointList__item {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 26px;
+  margin-bottom: 8px;
+  padding-left: 8px;
+  position: relative;
+}
+
+@media screen and (max-width: 767px) {
+  .SupportPointList__item {
+      margin-bottom: 0;
+  }
+}
+
+ /* ::before */
+.SupportPointList__item::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #D9D9D9;
+  position: absolute;
+  left: -10px;
+  top: calc(0.75em - 3px);
+}
+
+ /*  SupportListItem__caption */
+.SupportListItem__caption {
+  color: #A2A2A4;
+  font-size: 12px;
+  margin-top: 12px;
+  margin-left: -12px;
+}
+
+
+ /*  SupportSatisfaction */
+.SupportSatisfaction {
+  align-items: center;
+  background-color: #F79214;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  font-family: "Lato", sans-serif;
+  font-weight: 900;
+  justify-content: center;
+  height: 104px;
+  width: 104px;
+  text-align: center;
+}
+
+@media screen and (max-width: 1080px) {
+  .SupportSatisfaction {
+      height: 78px;
+      width: 78px;
+  }
+}
+
+ /*  SupportSatisfaction__label */
+.SupportSatisfaction__label {
+  font-size: 16px;
+  line-height: 19.2px;
+}
+
+@media screen and (max-width: 1080px) {
+  .SupportSatisfaction__label {
+      font-size: 12px;
+      line-height: 14.4px;
+  }
+}
+
+ /*  SupportSatisfaction__data */
+.SupportSatisfaction__data {
+  font-size: 32px;
+  line-height: 38.4px;
+}
+
+@media screen and (max-width: 1080px) {
+  .SupportSatisfaction__data {
+      font-size: 24px;
+      line-height: 28.8px;
+  }
+}
+
+ /*  SupportSatisfaction__unit */
+ .SupportSatisfaction__unit {
+  font-size: 28px;
+  line-height: 33.6px;
+}
+@media screen and (max-width: 1080px) {
+  .SupportSatisfaction__unit {
+      font-size: 21px;
+      line-height: 25.2px;
+  }
+}
+
+ /*  SupportInterviewSection */
+.SupportInterviewSection {
+  align-items: center;
+  background-color: #F4F5F7;
+  border-radius: 10px;
+  display: flex;
+  gap: 20px;
+  padding: 23px 40px;
+}
+
+@media screen and (max-width: 767px) {
+  .SupportInterviewSection {
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      margin: auto;
+      max-width: 414px;
+      width: 100%;
+      padding: 20px;
+  }
+}
+
+ /*  SupportInterview__question */
+.SupportInterview__question {
+  font-family: "Lato", sans-serif;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 32px;
+  margin-bottom: 8px;
+}
+
+@media screen and (max-width: 767px) {
+  .SupportInterview__question {
+      font-size: 18px;
+      line-height: 26px;
+      margin-bottom: 0;
+  }
+}
+ /*  SupportInterview__question--sp */
+.SupportInterview__question--sp {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .SupportInterview__question--sp {
+      display: block;
+  }
+}
+
+ /*  SupportInterviewImage */
+.SupportInterviewImage {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.SupportInterviewImage__image {
+  width: 90px;
+}
+
+
+ /*  SupportInterview__question--pc */
+.SupportInterview__question--pc {
+  display: block;
+}
+
+@media screen and (max-width: 767px) {
+  .SupportInterview__question--pc {
+      display: none;
+  }
+}
+
+
+ /*  SupportInterview__answer */
+.SupportInterview__answer {
+  font-size: 14px;
+  line-height: 18px;
+}
+
+/** -----------------------------------
+    06.ブログ
+-------------------------------------**/
+ /*  BlogsWrapper */
+.BlogsWrapper {
+  padding: 60px 0;
+  background-color: #fff;
+  margin-bottom: 60px;
+  padding-bottom: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .BlogsWrapper {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      padding: 40px 0;
+  }
+}
+
+
+ /*  Blogs */
+.Blogs {
+  max-width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+@media screen and (max-width: 1080px) {
+  .Blogs {
+      max-width: none;
+      padding-left: 36px;
+      padding-right: 36px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .Blogs {
+      max-width: none;
+      padding-left: 16px;
+      padding-right: 16px;
+  }
+}
+ /*  Blogs__title */
+.Blogs__title {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 60px;
+  width: 100%;
+}
+@media screen and (max-width: 767px) {
+  .Blogs__title {
+      margin-bottom: 40px;
+  }
+}
+ /*  h2 */
+.Blogs__title h2 {
+  font-family: "Lato", sans-serif;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 54px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+  .Blogs__title h2 {
+      font-size: 25px;
+      line-height: 36px;
+      text-align: center;
+      word-break: keep-all;
+  }
+}
+
+ /*  p */
+ .Blogs__title p {
+  display: inline-block;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 28px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+  .Blogs__title p {
+      font-size: 16px;
+      line-height: 21px;
+  }
+}
+
+ /*  br */
+ .Blogs__title br {
+  display: none;
+}
+@media screen and (max-width: 767px) {
+  .Blogs__title br {
+      display: block !important;
+  }
+}
+ /*  after */
+.Blogs__title::after {
+  border-bottom: 6px solid #F79214;
+  content: "";
+  display: block;
+  margin-top: 10px;
+  width: 50px;
+}
+ /*  BlogList */
+.BlogList {
+  display: flex;
+  gap: 20px;
+}
+
+@media screen and (max-width: 767px) {
+  .BlogList {
+      align-items: center;
+      flex-direction: column;
+  }
+}
+ /*  BlogListItem */
+.BlogListItem {
+  width: 33.3%;
+}
+@media screen and (max-width: 767px) {
+  .BlogListItem {
+      width: 100%;
+      max-width: 441px;
+  }
+}
+ /*  BlogListItem__image-wrapper */
+.BlogListItem__image-wrapper {
+  border-radius: 10px;
+  height: 187px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+@media screen and (max-width: 1080px) {
+  .BlogListItem__image-wrapper {
+      height: auto;
+  }
+}
+ /*  BlogListItem__image */
+ .BlogListItem:hover 
+ .BlogListItem__image {
+  transform: scale(1.1);
+}
+.BlogListItem__image {
+  transition: transform 0.3s ease;
+  width: 100%;
+}
+
+ /*  BlogListItem__title */
+.BlogListItem__title {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+}
+
+/** -----------------------------------
+    07.MESSAGE
+-------------------------------------**/
+ /*  MessageWrapper */
+.MessageWrapper {
+  padding: 60px 0;
+  max-width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  padding-top: 0;
+}
+@media screen and (max-width: 1080px) {
+  .MessageWrapper {
+      max-width: none;
+      padding-left: 36px;
+      padding-right: 36px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .MessageWrapper {
+      max-width: none;
+      padding-left: 16px;
+      padding-right: 16px;
+      padding: 40px 0;
+  }
+}
+
+ /*  MessageContainer */
+ .MessageContainer {
+  align-items: center;
+  background-color: #F4F5F7;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 52.5px;
+  padding: 41.65px 37.5px;
+}
+@media screen and (max-width: 767px) {
+  .MessageContainer {
+      flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .MessageContainer {
+      gap: 20px;
+      padding: 16px;
+  }
+}
+
+ /*  MessageContainer__image */
+.MessageContainer__image {
+  width: 40%;
+  max-width: 441px;
+}
+
+@media screen and (max-width: 767px) {
+  .MessageContainer__image {
+      width: 100%;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .MessageContainer__image {
+      padding: 15px 15px 0 15px;
+  }
+}
+ /*  Message */
+.Message {
+  padding-right: 21.5px;
+}
+@media screen and (max-width: 767px) {
+  .Message {
+      padding-right: 0;
+  }
+}
+ /*  Message__title */
+.Message__title {
+  font-family: "Lato", sans-serif;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 54px;
+  margin-bottom: 20px;
+}
+@media screen and (max-width: 414px) {
+  .Message__title {
+      font-size: 21px;
+      line-height: 33px;
+      margin-bottom: 10px;
+  }
+}
+ /*  Message__body */
+.Message__body {
+  font-size: 16px;
+  line-height: 26px;
+  margin-bottom: 20px;
+}
+
+/** -----------------------------------
+    08.POTEPANCAMPのコース
+-------------------------------------**/
+ /*  CourseListWrapper */
+.CourseListWrapper {
+  padding: 60px 0;
+  background-color: #F4F5F7;
+}
+@media screen and (max-width: 767px) {
+  .CourseListWrapper {
+      padding: 40px 0;
+  }
+}
+
+ /*  CourseList */
+.CourseList {
+  max-width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+@media screen and (max-width: 1080px) {
+  .CourseList {
+      max-width: none;
+      padding-left: 36px;
+      padding-right: 36px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .CourseList {
+      max-width: none;
+      padding-left: 16px;
+      padding-right: 16px;
+  }
+}
+ /*  CourseList */
+ .CourseList__title {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 60px;
+  width: 100%;
+  position: relative;
+}
+@media screen and (max-width: 767px) {
+  .CourseList__title {
+      margin-bottom: 40px;
+  }
+}
+
+ /*  h2 */
+ .CourseList__title h2 {
+  font-family: "Lato", sans-serif;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 54px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+@media screen and (max-width: 767px) {
+  .CourseList__title h2 {
+      font-size: 25px;
+      line-height: 36px;
+      text-align: center;
+      word-break: keep-all;
+  }
+}
+
+ /*  p */
+.CourseList__title p {
+  display: inline-block;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 28px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+  .CourseList__title p {
+      font-size: 16px;
+      line-height: 21px;
+  }
+}
+
+ /*  after */
+.CourseList__title::after {
+  border-bottom: 6px solid #F79214;
+  content: "";
+  display: block;
+  margin-top: 10px;
+  width: 50px;
+}
+
+ /*  CourseListItem */
+.CourseListItem {
+  margin-bottom: 20px;
+}
+
+ /*  CourseListItem__link */
+.CourseListItem__link {
+  align-items: flex-start;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  padding: 45px;
+}
+
+@media screen and (max-width: 767px) {
+  .CourseListItem__link {
+      flex-direction: column;
+      padding: 20px;
+  }
+}
+
+ /*  CourseNameSection */
+.CourseNameSection {
+  border: solid 3px;
+  border-image: linear-gradient(to right, #F79214 0%, #f74e06 100%);
+  border-image-slice: 1;
+  margin-right: 30px;
+  padding: 24px 0;
+  width: 30%;
+}
+
+@media screen and (max-width: 767px) {
+  .CourseNameSection {
+      width: 100%;
+      margin-right: 0;
+      margin-left: 0;
+  }
+}
+
+ /*  CourseNameSection__title */
+ .CourseNameSection__title {
+  font-size: 25px;
+  line-height: 32px;
+  text-align: center;
+}
+
+ /*  CourseContentSection */
+.CourseContentSection {
+  position: relative;
+  width: calc(70% + 30px);
+}
+
+@media screen and (max-width: 767px) {
+  .CourseContentSection {
+      margin-top: 25px;
+      padding-right: 0;
+      width: 100%;
+  }
+}
+
+ /*  CourseContentSection__description */
+ .CourseContentSection__description {
+  color: #F79214;
+  font-size: 22px;
+  line-height: 32px;
+  margin-bottom: 20px;
+}
+
+ /*  CourseDescriptionList */
+.CourseDescriptionList {
+  align-items: center;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 767px) {
+  .CourseDescriptionList {
+      margin-top: 25px;
+  }
+}
+
+ /*  CourseDescriptionList__dt */
+.CourseDescriptionList__dt {
+  background: linear-gradient(90deg, #212121, #444);
+  border-radius: 20px;
+  color: #fff;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  margin-right: 15px;
+  padding: 10px 15px;
+}
+
+@media screen and (max-width: 767px) {
+  .CourseDescriptionList__dt {
+      word-break: keep-all;
+  }
+}
+
+ /*  CourseDescriptionList__dd */
+.CourseDescriptionList__dd {
+  font-size: 18px;
+}
+
+ /*  CourseContentSection__link */
+.CourseContentSection__link {
+  align-items: center;
+  color: #999;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  gap: 4px;
+  width: fit-content;
+  margin-left: auto;
+}
+
+@media screen and (max-width: 767px) {
+  .CourseContentSection__link {
+      margin-top: 25px;
+      text-align: right;
+  }
+}
+
+ /*  after */
+.CourseContentSection__link::after {
+  content: url(https://camp.potepan.com/wp-content/themes/potepancamp/assets/images/common/chevron-right.svg);
+  display: inline-block;
+  margin: auto;
+  height: 24px;
+  width: 24px;
+}
+
+ /*  AboutSubsidyApplication */
+.AboutSubsidyApplication {
+  background-color: #fff;
+  padding: 20px;
+}
+@media screen and (max-width: 414px) {
+  .AboutSubsidyApplication {
+      padding: 8px;
+  }
+}
+
+ /*  AboutSubsidyApplication__title */
+.AboutSubsidyApplication__title {
+  background-color: #08AF77;
+  color: #fff;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 28px;
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 8px;
+}
+
+ /*  SubsidyIntroduction */
+.SubsidyIntroduction {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+@media screen and (max-width: 767px) {
+  .SubsidyIntroduction {
+      flex-direction: column;
+  }
+}
+
+ /*  SubsidyIntroduction__logo */
+.SubsidyIntroduction__logo {
+  width: 248px;
+}
+
+@media screen and (max-width: 767px) {
+  .SubsidyIntroduction__logo {
+      margin: auto;
+  }
+}
+
+
+ /*  p */
+.SubsidyIntroduction__body>p:first-of-type {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 26px;
+  margin-bottom: 8px;
+}
+
+.SubsidyIntroduction__body>p:last-of-type {
+  border: 1px solid #e0e0e0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  padding: 8px 16px;
+  text-align: center;
+}
+
+ /*  CourseFeeWithSubsidy */
+.CourseFeeWithSubsidy {
+  background-color: #FCFAF5;
+  margin-bottom: 24px;
+  padding: 24px 16px;
+}
+
+ /*  CourseFeeWithSubsidyContainer */
+ .CourseFeeWithSubsidyContainer {
+  margin: 0 auto;
+  max-width: 613px;
+  width: 100%;
+}
+
+ /*  CourseFeeWithSubsidy__title */
+.CourseFeeWithSubsidy__title {
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 28px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+ /*  CourseFeeWithSubsidy__images */
+.CourseFeeWithSubsidy__images {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+@media screen and (max-width: 767px) {
+  .CourseFeeWithSubsidy__images {
+      flex-direction: column;
+      gap: 8px;
+  }
+}
+ /* CourseFeeWithSubsidy__discount */
+.CourseFeeWithSubsidy__discount--pc {
+  display: block;
+}
+
+@media screen and (max-width: 767px) {
+  .CourseFeeWithSubsidy__discount--pc {
+      display: none;
+  }
+}
+
+.CourseFeeWithSubsidy__discount--sp {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .CourseFeeWithSubsidy__discount--sp {
+      display: block;
+  }
+}
+ /*  CourseFeeWithSubsidy__amount */
+.CourseFeeWithSubsidy__amount {
+  border-top: 1px solid #08AF77;
+  border-bottom: 1px solid #08AF77;
+  color: #08AF77;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 32px;
+  margin-bottom: 16px;
+  padding: 8px 0;
+  position: relative;
+  text-align: center;
+}
+
+ /*  span */
+.CourseFeeWithSubsidy__amount>span {
+  color: #A2A2A4;
+  font-size: 12px;
+  color: #08AF77;
+  margin-left: 5px;
+  position: absolute;
+  top: 0;
+}
+ /*  CourseFeeWithSubsidy__detail  */
+.CourseFeeWithSubsidy__detail {
+  font-size: 16px;
+  line-height: 26px;
+  margin-bottom: 16px;
+}
+
+ /*  CourseFeeWithSubsidy__caption  */
+.CourseFeeWithSubsidy__caption {
+  color: #A2A2A4;
+  font-size: 12px;
+  color: #333;
+}
+
+ /*  SubsidyConditionContainer  */
+.SubsidyConditionContainer {
+  margin: 0 auto;
+  max-width: 613px;
+  width: 100%;
+}
+
+ /*  SubsidyCondition  */
+.SubsidyCondition {
+  background-color: #F4F5F7;
+  padding: 20px;
+}
+ /*  SubsidyCondition__title  */
+.SubsidyCondition__title {
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 28px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+ /*  SubsidyConditionList  */
+.SubsidyConditionList {
+  margin-bottom: 16px;
+}
+ /*  SubsidyConditionList__item  */
+.SubsidyConditionList__item {
+  align-items: center;
+  display: flex;
+}
+@media screen and (max-width: 767px) {
+  .SubsidyConditionList__item:first-of-type {
+      margin-bottom: 8px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .SubsidyConditionList__item {
+      align-items: flex-start;
+  }
+}
+ /*  SubsidyConditionList__marker  */
+.SubsidyConditionList__marker {
+  margin-right: 8px;
+}
+ /*  Tooltip  */
+.Tooltip {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+}
+ /*  img  */
+.Tooltip img {
+  vertical-align: top;
+}
+ /*  Tooltip__text  */
+.Tooltip__text {
+  background-color: #333;
+  border-radius: 4px;
+  bottom: 150%;
+  color: #fff;
+  font-size: 10px;
+  left: 50%;
+  opacity: 0;
+  padding: 5px;
+  position: absolute;
+  transform: translateX(-50%);
+  transition: opacity 0.3s;
+  visibility: hidden;
+  width: max-content;
+  z-index: 1;
+}
+
+@media screen and (max-width: 767px) {
+  .Tooltip__text {
+      bottom: 150%;
+      right: -100px;
+      left: auto;
+      width: 150px;
+  }
+}
+
+ /*  before  */
+.Tooltip__text::before {
+  border-color: #333 transparent transparent transparent;
+  border-style: solid;
+  border-width: 8px;
+  content: "";
+  left: 50%;
+  position: absolute;
+  top: 95%;
+  transform: translateX(-50%);
+}
+@media screen and (max-width: 767px) {
+  .Tooltip__text::before {
+      left: 76.5%;
+      top: 96.5%;
+  }
+}
+ /*  SubsidyCondition__caption  */
+ .SubsidyCondition__caption {
+  color: #A2A2A4;
+  font-size: 12px;
+  color: #333;
+}
+ /*  CourseList__button  */
+.CourseList__button:visited {
+  color: #fff;
+}
+.CourseList__button {
+  align-items: center;
+  background-color: #F79214;
+  border: none;
+  border-radius: 38px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  font-weight: 700;
+  height: 64px;
+  justify-content: center;
+  text-decoration: none;
+  text-align: center;
+  width: 100%;
+  margin: 60px auto 0;
+  width: 300px;
+}
+
+@media screen and (max-width: 767px) {
+  .CourseList__button {
+      margin: 30px auto 0;
+  }
+}
+
+/** -----------------------------------
+    09.他スクールとの比較
+-------------------------------------**/
+ /*  ComparisonTableWrapper  */
+.ComparisonTableWrapper {
+  padding: 60px 0;
+}
+
+@media screen and (max-width: 767px) {
+  .ComparisonTableWrapper {
+      padding: 40px 0;
+  }
+}
+ /*  ComparisonTableSection  */
+.ComparisonTableSection {
+  max-width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+@media screen and (max-width: 1080px) {
+  .ComparisonTableSection {
+      max-width: none;
+      padding-left: 36px;
+      padding-right: 36px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .ComparisonTableSection {
+      max-width: none;
+      padding-left: 16px;
+      padding-right: 16px;
+  }
+}
+
+ /*  ComparisonTableSection__title  */
+ .ComparisonTableSection__title {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 60px;
+  width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  .ComparisonTableSection__title {
+      margin-bottom: 40px;
+  }
+}
+
+/*  h2  */
+.ComparisonTableSection__title h2 {
+  font-family: "Lato", sans-serif;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 54px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+  .ComparisonTableSection__title h2 {
+      font-size: 25px;
+      line-height: 36px;
+      text-align: center;
+      word-break: keep-all;
+  }
+}
+/*  p  */
+.ComparisonTableSection__title p {
+  display: inline-block;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 28px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+  .ComparisonTableSection__title p {
+      font-size: 16px;
+      line-height: 21px;
+  }
+}
+/*  after  */
+.ComparisonTableSection__title::after {
+  border-bottom: 6px solid #F79214;
+  content: "";
+  display: block;
+  margin-top: 10px;
+  width: 50px;
+}
+/*  ComparisonTableSection__scroll-message  */
+.ComparisonTableSection__scroll-message {
+  display: none;
+}
+
+@media screen and (max-width: 1080px) {
+  .ComparisonTableSection__scroll-message {
+      display: flex
+;
+      font-size: 14px;
+      justify-content: flex-end;
+      line-height: 18px;
+      margin-bottom: 10px;
+      text-align: right;
+  }
+}
+/*  img  */
+.ComparisonTableSection__scroll-message>img {
+  height: 18px;
+  margin-left: 4px;
+  width: 18px;
+}
+/*  ComparisonTableContainer  */
+.ComparisonTableContainer {
+  margin: 0 auto 60px;
+  position: relative;
+  height: 1032px;
+  width: 900px;
+}
+
+@media screen and (max-width: 1080px) {
+  .ComparisonTableContainer {
+      overflow-x: scroll;
+      width: 100%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .ComparisonTableContainer {
+      height: 1034px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .ComparisonTableContainer {
+      margin: 0 auto 30px;
+  }
+}
+/*  ComparisonTable  */
+.ComparisonTable {
+  border-radius: 10px;
+  box-shadow: 0px 15px 20px 0px rgba(0, 0, 0, 0.05);
+  height: 1032px;
+  width: 900px;
+}
+
+@media screen and (max-width: 1080px) {
+    .ComparisonTable {
+        box-shadow: none;
+    }
+}
+
+@media screen and (max-width: 414px) {
+  .ComparisonTable {
+      box-shadow: none;
+      width: 614px;
+  }
+}
+
+/*  table  */
+table {
+  border-collapse: collapse;
+}
+/*  tbody  */
+tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  unicode-bidi: isolate;
+  border-color: inherit;
+}
+/*  tr  */
+.ComparisonTable tr {
+  height: 108px;
+}
+.ComparisonTable tr:first-of-type {
+  height: 60px;
+}
+
+@media screen and (max-width: 414px) {
+  .ComparisonTable tr:first-of-type th:first-of-type {
+      width: 100px;
+  }
+}
+
+.ComparisonTable tr:first-of-type th {
+  font-size: 21px;
+  line-height: 28px;
+}
+
+@media screen and (max-width: 414px) {
+  .ComparisonTable tr:first-of-type th {
+      text-align: center;
+  }
+}
+
+.ComparisonTable tr th, .ComparisonTable tr td {
+  width: 200px;
+}
+
+.ComparisonTable tr td {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  text-align: center;
+}
+
+.ComparisonTable tr th {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 26px;
+}
+
+@media screen and (max-width: 1080px) {
+  .ComparisonTable tr th:first-of-type {
+      box-shadow: 12px 0px 12px -6px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      left: 0;
+      z-index: 1;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .ComparisonTable tr th, .ComparisonTable tr td {
+      width: 132px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .ComparisonTable tr th {
+      padding: 16px;
+      width: 100px;
+  }
+}
+
+.ComparisonTable tr:nth-child(odd) th, .ComparisonTable tr:nth-child(odd) td {
+  background-color: #FCFAF5;
+}
+
+.ComparisonTable tr:nth-child(even) th, .ComparisonTable tr:nth-child(even) td {
+  background-color: #fff;
+}
+
+.ComparisonTable tr td:first-of-type {
+  font-weight: 700;
+  width: 300px;
+}
+
+@media screen and (max-width: 414px) {
+  .ComparisonTable tr td:first-of-type {
+      width: 250px;
+  }
+}
+
+/*  ComparisonTableData  */
+.ComparisonTableData {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+/*  ComparisonTable tr td img  */
+.ComparisonTable tr td img {
+  height: 30px;
+  width: 30px;
+}
+/*  ComparisonTableData__point  */
+.ComparisonTableData__point {
+  font-size: 18px;
+  line-height: 26px;
+  text-align: center;
+}
+/*  EmphasizeCircle  */
+.EmphasizeCircle {
+  border: 4px solid #F79214;
+  border-radius: 10px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 200px;
+  width: 300px;
+}
+@media screen and (max-width: 414px) {
+  .EmphasizeCircle {
+      left: 100px;
+      width: 250px;
+  }
+}
+/*  button  */
+.ComparisonTableSection__link-button {
+  align-items: center;
+  background-color: #F79214;
+  border: none;
+  border-radius: 38px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  font-weight: 700;
+  height: 64px;
+  justify-content: center;
+  text-decoration: none;
+  text-align: center;
+  width: 100%;
+  margin: 60px auto 0;
+  width: 300px;
+}
+@media screen and (max-width: 767px) {
+  .ComparisonTableSection__link-button {
+      margin: 30px auto 0;
+  }
+}
+@media screen and (max-width: 414px) {
+  .ComparisonTableSection__link-button {
+      max-width: 300px;
+      width: 100%;
+  }
+}
+
+/** -----------------------------------
+     10.他コースのご案内
+-------------------------------------**/
+/*  OtherCoursesWrapper  */
+.OtherCoursesWrapper {
+  padding: 60px 0;
+  padding-bottom: 120px;
+}
+
+@media screen and (max-width: 767px) {
+  .OtherCoursesWrapper {
+      padding: 40px 0;
+  }
+}
+
+
+/*  OtherCoursesSection  */
+.OtherCoursesSection {
+  max-width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+@media screen and (max-width: 1080px) {
+  .OtherCoursesSection {
+      max-width: none;
+      padding-left: 36px;
+      padding-right: 36px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .OtherCoursesSection {
+      max-width: none;
+      padding-left: 16px;
+      padding-right: 16px;
+  }
+}
+
+/*  title  */
+.OtherCoursesSection__title {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 60px;
+  width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  .OtherCoursesSection__title {
+      margin-bottom: 40px;
+  }
+}
+
+/*  h2  */
+.OtherCoursesSection__title h2 {
+  font-family: "Lato", sans-serif;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 54px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+  .OtherCoursesSection__title h2 {
+      font-size: 25px;
+      line-height: 36px;
+      text-align: center;
+      word-break: keep-all;
+  }
+}
+
+/*  p  */
+.OtherCoursesSection__title p {
+  display: inline-block;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 28px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+  .OtherCoursesSection__title p {
+      font-size: 16px;
+      line-height: 21px;
+  }
+}
+/*  after  */
+.OtherCoursesSection__title::after {
+  border-bottom: 6px solid #F79214;
+  content: "";
+  display: block;
+  margin-top: 10px;
+  width: 50px;
+}
+
+/*  OtherCoursesDetailsContainer  */
+.OtherCoursesDetailsContainer {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media screen and (max-width: 1080px) {
+  .OtherCoursesDetailsContainer {
+      grid-template-columns: unset;
+      justify-content: center;
+  }
+}
+
+/*  OtherCoursesDetails  */
+.OtherCoursesDetails {
+  box-shadow: 0px 15px 20px 0px #0000000D;
+  display: grid;
+  gap: 24.5px;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 40px;
+}
+
+@media screen and (max-width: 1080px) {
+  .OtherCoursesDetails {
+      width: 508px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .OtherCoursesDetails {
+      grid-template-columns: unset;
+      justify-items: center;
+      padding: 24px;
+      text-align: center;
+      max-width: 350px;
+      width: 100%;
+  }
+}
+
+/*  OtherCoursesOverview  */
+.OtherCoursesOverview {
+  background-color: #F4F5F7;
+  padding: 18px 24px 21px;
+  position: relative;
+  text-align: center;
+  width: 209px;
+}
+
+/*  free-tag  */
+.OtherCoursesOverview__free-tag {
+  background-color: #08AF77;
+  border-radius: 4px;
+  color: #fff;
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 0 8px;
+  text-align: center;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+/*  lesson-logo  */
+.OtherCoursesOverview__lesson-logo {
+  margin-bottom: 8px;
+}
+
+/*  lessons-total-count  */
+.OtherCoursesOverview__lessons-total-count {
+  font-family: "Lato", sans-serif;
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+/*  span  */
+.OtherCoursesOverview__lessons-total-count>span {
+  font-size: 28px;
+  font-weight: 900;
+  margin: 0 3px;
+}
+
+/*  lessons-total-time  */
+.OtherCoursesOverview__lessons-total-time {
+  border: 1px solid #333;
+  border-radius: 3px;
+  display: inline-block;
+  font-family: "Lato", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 0 12px;
+}
+
+/*  span  */
+.OtherCoursesOverview__lessons-total-time>span {
+  font-size: 13.4px;
+  font-weight: 900;
+  margin: 0 3px;
+}
+
+/*  sub-title  */
+.OtherCoursesIntroduction__sub-title {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  margin-bottom: 4px;
+}
+
+/*  title  */
+.OtherCoursesIntroduction__title {
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 32px;
+  margin-bottom: 8px;
+}
+
+/*  br  */
+.OtherCoursesIntroduction__title>br {
+  display: block;
+}
+
+@media screen and (max-width: 767px) {
+  .OtherCoursesIntroduction__title>br {
+      display: none !important;
+  }
+}
+
+/*  OtherCoursesIntroduction__link  */
+.OtherCoursesIntroduction__link {
+  align-items: center;
+  color: #999;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  gap: 4px;
+  width: fit-content;
+}
+
+@media screen and (max-width: 767px) {
+  .OtherCoursesIntroduction__link {
+      margin-top: 25px;
+      text-align: right;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .OtherCoursesIntroduction__link {
+      margin: 0 auto;
+  }
+}
+
+/*  after   */
+.OtherCoursesIntroduction__link::after {
+  content: url(https://camp.potepan.com/wp-content/themes/potepancamp/assets/images/common/chevron-right.svg);
+  display: inline-block;
+  margin: auto;
+  height: 24px;
+  width: 24px;
+}
+
+
+/** -----------------------------------
+     フッダーバナー
+-------------------------------------**/
+/*  FixedFooter   */
+.FixedFooter {
+  bottom: 0;
+  position: fixed;
+  right: 4px;
+  z-index: 10;
+}
+
+@media screen and (max-width: 428px) {
+  .FixedFooter {
+      background-color: #F4F5F7;
+      bottom: 0;
+      height: 114px;
+      right: 0;
+      width: 100%;
+  }
+}
+
+/*  img   */
+.FixedFooter img {
+  cursor: pointer;
+  display: block;
+  max-width: 375px;
+}
+
+@media screen and (max-width: 428px) {
+  .FixedFooter img {
+      margin: 8px auto 0;
+      max-width: unset;
+      width: 100%;
+  }
+}
+
+/** -----------------------------------
+     フッダー
+-------------------------------------**/
+/*  Footer   */
+.Footer {
+  padding-top: 80px;
+  padding-bottom: 40px;
+  background-color: #f79314;
+}
+@media screen and (max-width: 767px) {
+  .Footer {
+      padding: 40px 0;
+  }
+}
+
+/*  FooterContainer   */
+.FooterContainer {
+  max-width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 1080px) {
+  .FooterContainer {
+      max-width: none;
+      padding-left: 36px;
+      padding-right: 36px;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .FooterContainer {
+      padding-right: 25px;
+      padding-left: 25px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .FooterContainer {
+      max-width: none;
+      padding-left: 16px;
+      padding-right: 16px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .FooterContainer {
+      display: block;
+      text-align: center;
+  }
+}
+
+/*  FooterList  */
+.FooterList {
+  margin-right: 20px;
+  order: 2;
+}
+
+@media screen and (max-width: 767px) {
+  .FooterList {
+      text-align: left;
+      margin-right: 0;
+      margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .FooterContainer ul.FooterList {
+      display: none;
+  }
+}
+
+/*  FooterList__item  */
+.FooterList__item:first-of-type {
+  margin-top: 0;
+}
+
+.FooterList__item {
+  font-family: "Lato", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 30px;
+}
+
+@media screen and (max-width: 767px) {
+  .FooterList__item {
+      margin-top: 25px;
+  }
+}
+
+/*  p  */
+.FooterList__item>p {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+/*  a  */
+.FooterList__item>a {
+  color: #fff;
+}
+
+/*  FooterListAndCharacter  */
+.FooterListAndCharacter {
+  order: 3;
+}
+
+@media screen and (max-width: 767px) {
+  .FooterListAndCharacter {
+      margin-top: 0;
+  }
+}
+
+/*  FooterListAndCharacter__character  */
+.FooterListAndCharacter__character {
+  display: block;
+  margin: 80px 0 0 auto;
+  width: 152px;
+}
+
+@media screen and (max-width: 767px) {
+  .FooterListAndCharacter__character {
+      margin: 0 auto 34px;
+  }
+}
+
+
+/*  FooterInfo  */
+.FooterInfo {
+  color: #fff;
+  display: block;
+  margin-right: 40px;
+  order: 1;
+}
+
+@media screen and (max-width: 960px) {
+  .FooterInfo {
+      margin-right: 20px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .FooterInfo {
+      border-top: 1px solid #fff;
+      margin-right: 0;
+      padding-top: 35px;
+  }
+}
+
+/*  FooterInfo__logo  */
+.FooterInfo__logo {
+  display: inline-block;
+  max-width: 280px;
+}
+@media screen and (max-width: 767px) {
+  .FooterInfo__logo {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+  }
+}
+
+/*  img  */
+.FooterInfo__logo>img {
+  width: 100%;
+  height: auto;
+}
+
+/*  company-name  */
+.FooterInfo__company-name {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 15px;
+}
+
+@media screen and (max-width: 767px) {
+  .FooterInfo__company-name {
+      margin-top: 30px;
+      text-align: center;
+  }
+}
+
+/*  FooterInfo__address  */
+.FooterInfo__address {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 35px;
+}
+
+@media screen and (max-width: 767px) {
+  .FooterInfo__address {
+      margin-top: 8px;
+      text-align: center;
+  }
+}
+/*  FooterSocialList  */
+.FooterSocialList {
+  display: flex;
+  margin: 35px 0;
+}
+
+@media screen and (max-width: 767px) {
+  .FooterSocialList {
+      justify-content: center;
+  }
+}
+/*  FooterSocialList__item  */
+.FooterSocialList__item {
+  margin-left: 20px;
+  display: block;
+  max-width: 60px;
+}
+/*  FooterSocialList__item img  */
+.FooterSocialList__item img {
+  width: 100%;
+  height: auto;
+}
+/*  FooterCopyright  */
+.FooterCopyright {
+  color: #fff;
+  font-size: 12px;
+}
